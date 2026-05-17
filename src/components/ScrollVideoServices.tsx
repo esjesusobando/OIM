@@ -50,7 +50,6 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
   const rafId         = useRef<number | null>(null);
   const [, setProgress]              = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [videoReady, setVideoReady]    = useState(false);
 
   // ── IntersectionObserver: preload video when section approaches viewport ──
   useEffect(() => {
@@ -71,22 +70,19 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
     return () => observer.disconnect();
   }, []);
 
-  // ── Load video metadata + track ready state ──
+  // ── Load video metadata ──
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
     const onMeta = () => { durationRef.current = video.duration; };
-    const onLoaded = () => setVideoReady(true);
     if (video.readyState >= 1) {
       durationRef.current = video.duration;
-      setVideoReady(true);
+
     } else {
       video.addEventListener('loadedmetadata', onMeta, { once: true });
     }
-    video.addEventListener('canplay', onLoaded, { once: true });
     return () => {
       video.removeEventListener('loadedmetadata', onMeta);
-      video.removeEventListener('canplay', onLoaded);
     };
   }, []);
 

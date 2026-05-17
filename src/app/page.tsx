@@ -6,11 +6,11 @@ import { HeroSection } from '@/components/HeroSection';
 import { ScrollVideoServices } from '@/components/ScrollVideoServices';
 
 // Lazy load below-the-fold sections — reduces initial JS bundle
-const ServicesSection = lazy(() => import('@/components/ServicesSection'));
-const AboutSection    = lazy(() => import('@/components/AboutSection'));
-const ProjectGallery  = lazy(() => import('@/components/ProjectGallery'));
-const ContactForm     = lazy(() => import('@/components/ContactForm'));
-const ServiceArea     = lazy(() => import('@/components/ServiceArea'));
+const ServicesSection = lazy(() => import('@/components/ServicesSection').then((module) => ({ default: module.ServicesSection })));
+const AboutSection = lazy(() => import('@/components/AboutSection').then((module) => ({ default: module.AboutSection })));
+const ProjectGallery = lazy(() => import('@/components/ProjectGallery').then((module) => ({ default: module.ProjectGallery })));
+const ContactForm = lazy(() => import('@/components/ContactForm').then((module) => ({ default: module.ContactForm })));
+const ServiceArea = lazy(() => import('@/components/ServiceArea').then((module) => ({ default: module.ServiceArea })));
 
 export default function Home() {
   const [lang, setLang] = useState<'en' | 'es'>(() => {

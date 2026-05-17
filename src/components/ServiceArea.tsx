@@ -82,7 +82,7 @@ const ColIcons: Record<string, React.ReactNode> = {
   ),
 };
 
-export default function ServiceArea({ lang }: ServiceAreaProps) {
+export function ServiceArea({ lang }: ServiceAreaProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const t = copy[lang];
 

@@ -93,7 +93,7 @@ const copy = {
   },
 };
 
-export default function ContactForm({ lang }: ContactFormProps) {
+export function ContactForm({ lang }: ContactFormProps) {
   const t = copy[lang];
   const sectionRef = useRef<HTMLElement>(null);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
@@ -140,6 +140,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
     ].filter(Boolean);
 
     const whatsappUrl = `https://wa.me/14705950121?text=${encodeURIComponent(bodyParts.join('\n'))}`;
+    setStatus('success');
     window.open(whatsappUrl, '_blank');
   };
 

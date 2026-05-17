@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 interface ServicesSectionProps {
   lang: 'en' | 'es';
@@ -102,15 +103,7 @@ const serviceImages = [
   '/service4.webp', // Commercial Projects
 ];
 
-// Photo-like gradient placeholders per service
-const serviceBgs = [
-  'linear-gradient(135deg, #2d3a4a 0%, #1a2535 40%, #0d1b2a 100%)',
-  'linear-gradient(135deg, #1e2d3d 0%, #2a3f55 50%, #162030 100%)',
-  'linear-gradient(135deg, #263545 0%, #1a2a38 100%)',
-  'linear-gradient(135deg, #0d1b2a 0%, #1a2e42 100%)',
-];
-
-export default function ServicesSection({ lang }: ServicesSectionProps) {
+export function ServicesSection({ lang }: ServicesSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const t = copy[lang];
 
@@ -179,12 +172,13 @@ export default function ServicesSection({ lang }: ServicesSectionProps) {
             >
               {/* Service image with fallback */}
               <div className="h-44 relative overflow-hidden">
-                <img
+                <Image
                   src={serviceImages[i]}
                   alt={service.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
                   loading="lazy"
-                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
               </div>

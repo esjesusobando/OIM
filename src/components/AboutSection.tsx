@@ -45,7 +45,7 @@ const copy = {
   },
 };
 
-export default function AboutSection({ lang }: AboutSectionProps) {
+export function AboutSection({ lang }: AboutSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const t = copy[lang];
 

@@ -48,7 +48,7 @@ const projectImages = [
   '/project3.webp', // Floor Reconfiguration
 ];
 
-export default function ProjectGallery({ lang }: ProjectGalleryProps) {
+export function ProjectGallery({ lang }: ProjectGalleryProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const t = copy[lang];
   const [isVisible, setIsVisible] = useState(false);
